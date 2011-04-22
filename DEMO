@@ -1,4 +1,12 @@
+# Local
+
+bundle install
+rake production db:bootstrap
+script/server -e production
+
+# Demo
+
 heroku create
-heroku rake crm:setup USERNAME=myusername PASSWORD=mypass EMAIL=my@email.com
-heroku restart
+heroku db:push
+git push heroku master
 
