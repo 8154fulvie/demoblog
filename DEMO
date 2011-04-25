@@ -6,7 +6,29 @@ script/server -e production
 
 # Demo
 
+## Create
+
 heroku create
-heroku db:push
+heroku db:push --confirm appname
 git push heroku master
 
+## Extend and Introspect
+
+heroku addons:add memcached:5mb sendgrid:free pgbackups
+heroku pgbackups:capture
+
+heroku addons:upgrade logging:advanced
+heroku logs --tail
+heroku logs --tail -s app | grep SQL
+
+## Scale
+
+heroku dynos +2
+heroku workers +5
+heroku ps
+heroku dynos 1
+heroku workers 0
+
+## Baby steps:
+# Show online scale slider
+# Show addon page & add buttons
