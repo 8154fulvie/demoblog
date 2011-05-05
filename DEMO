@@ -6,7 +6,27 @@ script/server -e production
 
 # Demo
 
-heroku create
-heroku db:push
+## Create
+
+heroku create demoblog1
+heroku db:push --confirm demoblog1
 git push heroku master
 
+## Scale
+
+heroku dynos +2
+heroku ps
+heroku dynos 1
+
+## Extend and Introspect
+
+heroku addons:add memcache:5mb
+
+heroku addons:add pgbackups:basic
+heroku pgbackups:capture
+heroku pgbackups:url
+
+# Web UI
+#
+# Show online scale slider
+# Show addon page & add buttons
